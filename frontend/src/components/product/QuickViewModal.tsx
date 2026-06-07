@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ShoppingBag } from "lucide-react";
 import type { Product } from "@/types";
 import { t as localized } from "@/lib/localized";
-import { formatPrice, calcDiscount } from "@/lib/utils";
+import { formatPrice } from "@/lib/utils";
 import { useCartStore } from "@/stores/cart-store";
 import type { Locale } from "@/types";
 

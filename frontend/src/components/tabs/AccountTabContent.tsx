@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { AnimatePresence } from "framer-motion";
 import { Phone } from "lucide-react";
 import { useAuthStore } from "@/stores/auth-store";
@@ -30,7 +30,6 @@ function FormField({
 }
 
 export function AccountTabContent() {
-  const locale = useLocale();
   const router = useRouter();
   const t = useTranslations("account");
   const hydrated = useHydrated();
@@ -43,6 +42,7 @@ export function AccountTabContent() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState<"login" | "register" | null>(null);
+  const [loading, setLoading] = useState(false);
 
   if (!hydrated) {
     return (
@@ -62,8 +62,6 @@ export function AccountTabContent() {
       </div>
     );
   }
-
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

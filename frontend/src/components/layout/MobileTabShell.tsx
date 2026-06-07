@@ -20,15 +20,19 @@ const TAB_CONTENT: Record<MobileTabId, React.ReactNode> = {
 
 export function MobileTabShell() {
   const tabs = useMobileTabs();
-  if (!tabs?.isShellActive) return null;
-
-  const { activeTab, isTabMounted } = tabs;
+  const isShellActive = tabs?.isShellActive ?? false;
+  const activeTab = tabs?.activeTab ?? "home";
 
   useLayoutEffect(() => {
+    if (!isShellActive) return;
     scrollAppToTopSoon({ tab: activeTab });
     const t = window.setTimeout(() => scrollAppToTopSoon({ tab: activeTab }), 100);
     return () => window.clearTimeout(t);
-  }, [activeTab]);
+  }, [activeTab, isShellActive]);
+
+  if (!isShellActive || !tabs) return null;
+
+  const { isTabMounted } = tabs;
 
   return (
     <div className="mobile-tab-shell hidden max-md:flex flex-1 flex-col min-h-0">
