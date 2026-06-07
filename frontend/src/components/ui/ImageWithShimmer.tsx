@@ -49,6 +49,7 @@ export function ImageWithShimmer({
       ) : (
         <Image
           {...props}
+          alt={props.alt ?? ""}
           src={currentSrc}
           className={cn(
             className,
