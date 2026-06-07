@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build
+.next/
+out/
+dist/
+backend/bootstrap/cache/*.php
+backend/storage/*.key
+
+# Env
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.data
+
+# Vercel
+.vercel
+frontend/.vercel
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Laravel
+backend/storage/logs/
+backend/storage/framework/cache/
+backend/storage/framework/sessions/
+backend/storage/framework/views/
+
+# Testing
+coverage/
+.phpunit.result.cache

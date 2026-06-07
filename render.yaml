@@ -1,0 +1,20 @@
+# Бесплатный деплой на Render.com (альтернатива Vercel)
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: golibshop
+    runtime: node
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /ru
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
