@@ -38,13 +38,33 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = (await import(`@/messages/${locale}.json`)).default;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
   return {
     title: messages.meta.title,
     description: messages.meta.description,
+    applicationName: "Golib Shop",
+    appleWebApp: {
+      capable: true,
+      title: "Golib Shop",
+      statusBarStyle: "default",
+    },
+    formatDetection: {
+      telephone: false,
+    },
+    icons: {
+      icon: [
+        { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+        { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+      ],
+      apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    },
+    themeColor: "#0b6b38",
     openGraph: {
       title: messages.meta.title,
       description: messages.meta.description,
       type: "website",
+      ...(siteUrl ? { url: `${siteUrl}/${locale}` } : {}),
     },
   };
 }
